@@ -19,7 +19,7 @@
 ```
 
 ### 3. Configurar el entorno
-Duplicar el archivo `.env.example` y renombrarlo a `.env`. Luego, configurar las siguientes variables de AWS:
+Duplicar el archivo `env.example` y renombrarlo a `.env`. Luego, configurar las siguientes variables de AWS:
 ```ini
 aws.access_key_id=TU_ACCESS_KEY
 aws.secret_access_key=TU_SECRET_KEY
