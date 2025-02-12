@@ -49,10 +49,10 @@
                                 <?= date('Y-m-d H:i', strtotime($file['created_at'])) ?>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <button onclick="copyToClipboard('<?= esc($file['s3_url']) ?>')" class="text-blue-600 hover:text-blue-900 mr-3">
+                                <button onclick="copyToClipboard('<?= $file['s3_url'] ?>')" class="text-blue-600 hover:text-blue-900 mr-3">
                                     <i class="bi bi-clipboard"></i> Copiar URL
                                 </button>
-                                <a href="/files/download/<?= $file['id'] ?>" class="text-indigo-600 hover:text-indigo-900 mr-3">
+                                <a href="<?= $file['s3_url'] ?>" class="text-indigo-600 hover:text-indigo-900 mr-3">
                                     <i class="bi bi-download"></i> Descargar
                                 </a>
                                 <a href="/files/delete/<?= $file['id'] ?>" class="text-red-600 hover:text-red-900" onclick="return confirm('¿Estás seguro de que deseas eliminar este archivo?')">
@@ -67,4 +67,20 @@
     </div>
 </main>
 
+<script>
+    function copyToClipboard(url) {
+        navigator.clipboard.writeText(url).then(() => {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg';
+            toast.textContent = 'URL copiada al portapapeles';
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }).catch(() => {
+            alert('Error al copiar URL');
+        });
+    }
+</script>
 <?= $this->endSection() ?>
